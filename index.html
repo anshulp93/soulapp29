@@ -1,0 +1,2545 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+        </title>
+        <!--<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />-->
+		<link rel="stylesheet" href="jquery.mobile-1.1.1.min.css" />
+        <link rel="stylesheet" href="my.css" />
+        <style>
+            /* App custom styles */
+        </style>
+		<script type="text/javascript">
+  
+				  var inps=document.getElementsByTagName('input');
+				  var a_count=0;
+				  var b_count=0;
+				  var c_count=0;
+				  var d_count=0;
+				  var answer=0;
+				  var a=0;
+				  var b=0;
+				  var cc=0;
+				  var d=0;
+				  var tracker=0;
+				  var skintype="";
+				  //var features_y='width=300,height=300,left=520,top=300,scrollbars=1';
+				  //var features_n='width=300,height=300,left=200,top=300,scrollbars=1';
+				  
+				  function displayPopUp() {
+				  
+						  for(c=0;c<inps.length;c++) {
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='a')) {
+							  a_count++;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='b')) {
+							  b_count++;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='c')) {
+							  c_count++;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='d')) {
+							  d_count++;
+							  }
+						  }
+						  
+						  for(c=0;c<inps.length;c++) {
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='a') &&(inps[c].name=='q1')) {
+							  tracker=1;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='b')&&(inps[c].name=='q1')) {
+							  tracker=2;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='c')&&(inps[c].name=='q1')) {
+							  tracker=3;
+							  }
+							  if((inps[c].type=='radio')&&(inps[c].checked==true)&&(inps[c].value=='d')&&(inps[c].name=='q1')) {
+							  tracker=4;
+							  }
+						  }
+						  
+						  answer=a_count;
+						  
+						  for(c=0;c<inps.length;c++) {
+						  
+							  if(b_count>answer) answer=b_count;
+							  if(c_count>answer) answer=c_count;
+							  if(d_count>answer) answer=d_count;
+							  
+							  if(answer==a_count && a_count!=b_count && a_count!=c_count && a_count!=d_count) {
+								  skintype="Normal";}
+							  else if(answer==b_count && b_count!=a_count && b_count!=c_count && b_count!=d_count) {      skintype="Dry";}
+							  else if(answer==c_count && c_count!=a_count && c_count!=b_count && c_count!=d_count) {		      skintype="Combination";}
+							  else if(answer==d_count && d_count!=a_count && d_count!=b_count && d_count!=c_count) {      skintype="Oily";}
+							  
+							  else if(answer==a_count && tracker==1) {skintype="Normal";}
+							  else if(answer==b_count && tracker==2) {skintype="Dry";}
+							  else if(answer==c_count && tracker==3) {skintype="Combination";}
+							  else if(answer==d_count && tracker==4) {skintype="Oily";}
+							  
+							  //document.write(skintype);
+							  document.getElementById('userInput').innerHTML = skintype;
+
+							  /*alert('a_ccount='+a_count+' b_ccount='+b_count+' c_ccount='+c_count+' d_ccount='+d_count+'answer='+answer);*/
+						  }
+				  
+				  }
+		</script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"> -->
+		<script src="jquery.min.js">
+        </script>
+        <!-- <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"> -->
+		<script src="jquery.mobile-1.1.1.min.js">
+        </script>
+        <script src="my.js">
+        </script>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="Slicebox - 3D Image Slider with Fallback" />
+        <meta name="keywords" content="jquery, css3, 3d, webkit, fallback, slider, css3, 3d transforms, slices, rotate, box, automatic" />
+		<meta name="author" content="Pedro Botelho for Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/slicebox.css" />
+		<link rel="stylesheet" type="text/css" href="css/custom.css" />
+		<script type="text/javascript" src="js/modernizr.custom.46884.js"></script>
+  <!--[if lt IE 7]>
+  	<link rel="stylesheet" href="css/ie/ie6.css" type="text/css" media="all">
+  <![endif]-->
+  <!--[if lt IE 9]>
+  	<script type="text/javascript" src="js/html5.js"></script>
+    <script type="text/javascript" src="js/IE9.js"></script>
+  <![endif]-->
+    </head>
+    <body>
+        <!-- Home -->
+        <div data-role="page" id="page1">
+            <div data-theme="a" data-role="header">
+                <h3>
+					<img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+            </div>
+			
+            <div data-role="content">
+				<div class="container">
+				</br>
+					<div class="wrapper">
+
+						<ul id="sb-slider" class="sb-slider">
+							<li>
+								<img src="img/slide_low.jpg" alt="image1"/></a>
+								<div class="sb-description">
+								</div>
+							</li>
+							<li>
+								<img src="img/slide2_low.jpg" alt="image2"/></a>
+								<div class="sb-description">
+								</div>
+							</li>
+							<li>
+								<img src="img/slide3_low.jpg" alt="image1"/></a>
+								<div class="sb-description">
+								</div>
+							</li>
+							<li>
+								<img src="img/slide4_low.jpg" alt="image1"/></a>
+								<div class="sb-description">
+								</div>
+							</li>
+							<li>
+								<img src="img/slide5_low.jpg" alt="image1"/></a>
+								<div class="sb-description">
+								</div>
+							</li>
+							<li>
+								<img src="img/bg3.jpg" alt="image1"/></a>
+								<div class="sb-description">
+								</div>
+							</li>
+							<li>
+								<img src="img/bg5.jpg" alt="image1"/></a>
+								<div class="sb-description">
+								</div>
+							</li>
+						</ul>
+
+						<div id="shadow" class="shadow"></div>
+
+						<div id="nav-arrows" class="nav-arrows">
+							<a href="#">Next</a>
+							<a href="#">Previous</a>
+						</div><div id="nav-options" class="nav-options">
+							<span id="navPlay">Play</span>
+							<span id="navPause">Pause</span>
+						</div>
+
+					</div><!-- /wrapper -->
+
+				</div>
+                        
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.slicebox.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				
+				var Page = (function() {
+
+					var $navArrows = $( '#nav-arrows' ).hide(),
+						$navOptions = $( '#nav-options' ).hide(),
+						$shadow = $( '#shadow' ).hide(),
+						slicebox = $( '#sb-slider' ).slicebox( {
+							onReady : function() {
+
+								$navArrows.show();
+								$navOptions.show();
+								$shadow.show();
+
+							},
+							orientation : 'h',
+							cuboidsCount : 1
+						} ),
+						
+						init = function() {
+
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							// add navigation events
+							$navArrows.children( ':first' ).on( 'click', function() {
+
+								slicebox.next();
+								return false;
+
+							} );
+
+							$navArrows.children( ':last' ).on( 'click', function() {
+								
+								slicebox.previous();
+								return false;
+
+							} );
+
+							$( '#navPlay' ).on( 'click', function() {
+								
+								slicebox.play();
+								return false;
+
+							} );
+
+							$( '#navPause' ).on( 'click', function() {
+								
+								slicebox.pause();
+								return false;
+
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+				Page.init();
+
+			});
+		</script>
+			</div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a" >
+                <ul>
+                    <li >
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</FONT>
+                        </a>
+                    </li>
+					<li >
+                        <a href="#prod" data-theme="" >
+                            <Font color="white" size="4px">Products</font>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="#page2" data-theme="" >
+                            <Font color="white" size="4px">Moods</font>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="#page3" data-theme="" >
+                            <Font color="white" size="4px">Skin</font>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="#page4" data-theme="" >
+                            <Font color="white" size="4px">More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+			</div>
+        </div>
+		
+		
+		<!-- products -->
+        <div data-role="page" id="prod" data-add-back-btn="true" data-theme="b">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
+            </div>
+            <div data-role="content" style="height:42.3em" >
+               
+				<img src="rakesh/icons_individuals.jpg" alt="moods" width="1050" height="500" ismap="ismap" usemap="#moodsmap">
+				
+				<map name="moodsmap">
+					<area shape="rect" coords="60,30,440,220" alt="Relax" href="#page5" data-transition="pop">
+					<area shape="rect" coords="580,30,960,220" alt="Refresh" href="#page18" data-transition="pop">
+					<area shape="rect" coords="60,275,440,460" alt="Sleep" href="#page22" data-transition="pop">
+					<area shape="rect" coords="580,275,960,460" alt="Romance" href="#page19" data-transition="pop">
+				</map>
+				
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- Moods -->
+        <div data-role="page" id="page2" data-add-back-btn="true" data-theme="b">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
+            </div>
+            <div data-role="content" style="height:42.3em" >
+               
+				<img src="img/mood.jpg" alt="moods" width="1050" height="500" ismap="ismap" usemap="#moodsmap">
+				
+				<map name="moodsmap">
+					<area shape="rect" coords="60,30,440,220" alt="Relax" href="#page5" data-transition="pop">
+					<area shape="rect" coords="580,30,960,220" alt="Refresh" href="#page18" data-transition="pop">
+					<area shape="rect" coords="60,275,440,460" alt="Sleep" href="#page22" data-transition="pop">
+					<area shape="rect" coords="580,275,960,460" alt="Romance" href="#page19" data-transition="pop">
+				</map>
+				
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- Skin -->
+        <div data-role="page" id="page3" data-add-back-btn="true" data-theme="b">
+            <div data-theme="a" data-role="header">
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
+            </div>
+            <div data-role="content" style="height:42.3em">
+                <img src="img/skin.jpg" alt="moods" width="1050" height="500" ismap="ismap" usemap="#skinmap">
+				
+				<map name="skinmap">
+					<area shape="rect" coords="60,30,440,220" alt="Dry" href="#page25" data-transition="pop">
+					<area shape="rect" coords="580,30,960,220" alt="Normal" href="#page23" data-transition="pop">
+					<area shape="rect" coords="60,275,440,460" alt="Oily" href="#page24" data-transition="pop">
+					<area shape="rect" coords="580,270,960,460" alt="Combination" href="#page26" data-transition="pop">
+				</map>
+            </div>
+				
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- More -->
+        <div data-role="page" id="page4" data-add-back-btn="true" data-theme="b">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b" class="ui-btn-right">Home</a>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                    <li data-role="list-divider" role="heading">
+                        Menu
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page13" data-transition="slide">
+                            About Us
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page15" data-transition="slide">
+                            Gift Recommendations
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page16" data-transition="slide">
+                            Home Decor
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page17" data-transition="slide">
+                            Know Your Skin Type
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- Relax -->
+        <div data-role="page" id="page5" >
+            <div data-theme="a" data-role="header">
+			<a href="#page2" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+                <img src="rakesh/rel1.jpg" alt="moods" style=" height="500" ismap="ismap" usemap="#romancemap">
+				
+					<map name="romancemap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#refess" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#refbath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#refmsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#refsop" data-transition="pop">
+					</map>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+        <!-- Refresh -->
+        <div data-role="page" id="page18" >
+            <div data-theme="a" data-role="header">
+			<a href="#page2" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+                <img src="rakesh/ref1.jpg" alt="moods" style=" width="1050" height="500" ismap="ismap" usemap="#romancemap">
+				
+					<map name="romancemap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#reless" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#relbath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#relmsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#relsop" data-transition="pop">
+					</map>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+        <!-- romance -->
+        <div data-role="page" id="page19" >
+            <div data-theme="a" data-role="header">
+			<a href="#page2" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+                <img src="rakesh/rom1.jpg" alt="moods" width="1050" height="500" ismap="ismap" usemap="#romancemap">
+				
+					<map name="romancemap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#romess" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#rombath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#rommsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#romsop" data-transition="pop">
+					</map>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- Sleep -->
+        <div data-role="page" id="page22" >
+            <div data-theme="a" data-role="header">
+			<a href="#page2" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				<img src="rakesh/sleep1.jpg" alt="moods" width="1050" height="500" ismap="ismap" usemap="#romancemap">
+				
+					<map name="romancemap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#sleepess" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#sleepbath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#sleepmsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#sleepsop" data-transition="pop">
+					</map>
+            </div>
+			
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+        <!-- Normal -->
+        <div data-role="page" id="page23" >
+            <div data-theme="a" data-role="header">
+			<a href="#page3" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+					<img src="rakesh/norm1.jpg" alt="moods" width="1050" height="500" ismap="ismap" usemap="#romap">
+				
+					<map name="romap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#noress" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#norbath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#normsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#norsoap" data-transition="pop">
+					</map>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+        <!-- Oily -->
+        <div data-role="page" id="page24" >
+            <div data-theme="a" data-role="header">
+			<a href="#page3" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+					<img src="rakesh/oily1.jpg" alt="moods" alt="moods" width="1050" height="500"  ismap="ismap" usemap="#oilmap">
+				
+					<map name="oilmap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#oiless" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#oilbath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#oilmsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#oilsoap" data-transition="pop">
+					</map>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- Dry -->
+        <div data-role="page" id="page25" >
+            <div data-theme="a" data-role="header">
+			<a href="#page3" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+                <img src="rakesh/dry1.jpg" alt="moods"width="1050" height="500" ismap="ismap" usemap="#drymap">
+				
+					<map name="drymap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#dryess" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#drybath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#drymsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#drysop" data-transition="pop">
+					</map>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+        <!-- Combination -->
+        <div data-role="page" id="page26" >
+            <div data-theme="a" data-role="header">
+			<a href="#page3" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+                <img src="rakesh/comb1.jpg" alt="moods" width="1050" height="500" ismap="ismap" usemap="#combmap">
+				
+					<map name="combmap">
+						<area shape="rect" coords="50,70,275,475" alt="Essential oil" href="#combess" data-transition="pop">
+						<area shape="rect" coords="300,70,525,475" alt="Bath salt" href="#combbath" data-transition="pop">
+						<area shape="rect" coords="550,70,775,475" alt="Carrier oil" href="#combmsc" data-transition="pop">
+						<area shape="rect" coords="800,70,1025,475" alt="Soap" href="#combsop" data-transition="pop">
+					</map>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+        <!-- AboutUs -->
+        <div data-role="page" id="page13" data-add-back-btn="true">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				<img src="rakesh/love.jpg" alt="moods" width="1050" height="500">
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        
+		<!-- GiftRecommendations -->
+        <div data-role="page" id="page15" data-add-back-btn="true">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- Home Decor -->
+        <div data-role="page" id="page16" data-add-back-btn="true">
+            <div data-theme="a" data-role="header">
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="home.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- normal skin soaps -->
+        <div data-role="page" id="norsoap" >
+            <div data-theme="a" data-role="header">
+			<a href="#page23" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="norsoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- normal skin bath salts -->
+        <div data-role="page" id="norbath" >
+            <div data-theme="a" data-role="header">
+			<a href="#page23" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="norbath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- normal skin essential oils -->
+        <div data-role="page" id="noress" >
+            <div data-theme="a" data-role="header">
+			<a href="#page23" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="noress.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- normal skin massage carrier oils -->
+        <div data-role="page" id="normsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page23" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="normsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- oily skin soaps -->
+        <div data-role="page" id="oilsoap" >
+            <div data-theme="a" data-role="header">
+			<a href="#page24" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="oilsoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- oily skin bath salts -->
+        <div data-role="page" id="oilbath" >
+            <div data-theme="a" data-role="header">
+			<a href="#page24" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="oilbath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- oily skin essential oils -->
+        <div data-role="page" id="oiless" >
+            <div data-theme="a" data-role="header">
+			<a href="#page24" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="oiless.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- oily skin massage carrier oils -->
+        <div data-role="page" id="oilmsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page24" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="oilmsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+		<!-- dry skin soaps -->
+        <div data-role="page" id="drysop">
+            <div data-theme="a" data-role="header">
+			<a href="#page25" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="drysoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- dry skin bath salts -->
+        <div data-role="page" id="drybath" >
+            <div data-theme="a" data-role="header">
+			<a href="#page25" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="drybath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- dry skin essential oils -->
+        <div data-role="page" id="dryess" >
+            <div data-theme="a" data-role="header">
+			<a href="#page25" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="dryess.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- dry skin massage carrier oils -->
+        <div data-role="page" id="drymsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page25" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="drymsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+		<!-- combination skin soaps -->
+        <div data-role="page" id="combsop" >
+            <div data-theme="a" data-role="header">
+			<a href="#page26" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="combsoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- combination skin bath salts -->
+        <div data-role="page" id="combbath">
+            <div data-theme="a" data-role="header">
+			<a href="#page26" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="combbath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- Combination skin essential oils -->
+        <div data-role="page" id="combess" >
+            <div data-theme="a" data-role="header">
+			<a href="#page26" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="combess.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- Combination skin massage carrier oils -->
+        <div data-role="page" id="combmsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page26" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="combmsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+		
+				<!-- romance mood soaps -->
+        <div data-role="page" id="romsop" >
+            <div data-theme="a" data-role="header">
+			<a href="#page19" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="romsoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- romance mood bath salts -->
+        <div data-role="page" id="rombath" >
+            <div data-theme="a" data-role="header">
+			<a href="#page19" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="rombath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- romance essential oils -->
+        <div data-role="page" id="romess" >
+            <div data-theme="a" data-role="header">
+			<a href="#page19" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                   <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="romess.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+				<!-- romance massage and carrier oils -->
+        <div data-role="page" id="rommsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page19" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="rommsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- relax mood soaps -->
+        <div data-role="page" id="relsop" >
+            <div data-theme="a" data-role="header">
+			<a href="#page5" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="relsoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- relax mood bath salts -->
+        <div data-role="page" id="relbath" >
+            <div data-theme="a" data-role="header">
+			<a href="#page5" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="relbath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- relax mood essential oils -->
+        <div data-role="page" id="reless" >
+            <div data-theme="a" data-role="header">
+			<a href="#page5" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="reless.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+				<!-- relax massage and carrier oils -->
+        <div data-role="page" id="relmsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page5" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="relmsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+		<!-- refresh mood soaps -->
+        <div data-role="page" id="refsop" >
+            <div data-theme="a" data-role="header">
+			<a href="#page18" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="refsoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- refresh mood bath salts -->
+        <div data-role="page" id="refbath" >
+            <div data-theme="a" data-role="header">
+			<a href="#page18" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="refbath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- refresh mood essential oils -->
+        <div data-role="page" id="refess" >
+            <div data-theme="a" data-role="header">
+			<a href="#page18" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="refess.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- refresh massage and carrier oils -->
+        <div data-role="page" id="refmsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page18" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="refmsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		
+		<!-- sleep mood soaps -->
+        <div data-role="page" id="sleepsop" >
+            <div data-theme="a" data-role="header">
+			<a href="#page22" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="sleepsoap.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+           <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- sleep mood bath salts -->
+        <div data-role="page" id="sleepbath" >
+            <div data-theme="a" data-role="header">
+			<a href="#page22" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="sleepbath.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- sleepy mood essential oils -->
+        <div data-role="page" id="sleepess" >
+            <div data-theme="a" data-role="header">
+			<a href="#page22" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="sleepess.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+		<!-- sleepy mood massage and carrier oils -->
+        <div data-role="page" id="sleepmsc" >
+            <div data-theme="a" data-role="header">
+			<a href="#page22" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content">
+				 <iframe src="sleepmsc.html" width="100%" display="block" position="relative" style="height:40em" 
+					frameborder="0"  name="myInlineFrame"></iframe>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		
+        <!-- Know Your Skin Type -->
+        <div style='background:url(img/bg2.jpg)' data-role="page" id="page17">
+            <div data-theme="a" data-role="header">
+				<a href="#page25" data-icon="back" data-theme="b"> Back </a>
+                <h3>
+                    <img src="img/logo2.png" alt="logo2" width="350" height="50"> </img>
+                </h3>
+				<a href="index.html" data-icon="home" data-theme="b">Home</a>
+            </div>
+            <div data-role="content" >
+				<form action="#" onSubmit="displayPopUp()">
+					  <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+					  <legend><text style="font-family:Century Gothic; font-size:30px; color:black "><center> <b>Take your Skin Test</b></center></text></legend>
+						  <div style=" width:45%; float:left;">
+							  <ul style="list-style: none;">
+								  <text style="font-family:Century Gothic; font-size:22px; color:black"><center><b>Texture of your skin</b></center></text></br>
+									  <ul style="list-style: none;">
+									  <li><input type="radio" id="radio1" name="q1" value="a"/><label for="radio1"><center>Does not Shine</center></label>
+									  <li><input type="radio" id="radio2" name="q1" value="b" /><label for="radio2"><center>Is dry and sometimes slight flaking may appear</center></label></li>
+									  <li><input type="radio" id="radio3" name="q1" value="c"/><label for="radio3"><center>Shines on the nose</center></label></li>
+									  <li><input type="radio" id="radio4" name="q1" value="d" /><label for="radio4"><center>Shines all-over</center></label></li>
+									  </ul>
+								  </br></br>
+								  <text style="font-family:Century Gothic; font-size:22px; color:black"><center><b>Appearance of pores on your skin</b></center></text></br>
+									  <ul style="list-style: none;">
+									  <li><input type="radio" id="radio5" name="q2" value="a"/><label for="radio5"> <center>Normal</center></label></li>
+									  <li><input type="radio" id="radio6" name="q2" value="b" /><label for="radio6"><center>Very fine</center></label></li>
+									  <li><input type="radio" id="radio7" name="q2" value="c"/><label for="radio7"><center>Visible</center></label></li>
+									  <li><input type="radio" id="radio8" name="q2" value="d" /><label for="radio8"><center>very opened</center></label></li>
+									  </ul>
+								  </br></br>
+							  </ul>
+						  </div>
+						  <div style=" width:45%; float:right;">
+							  <ul style="list-style: none;">
+								  <text style="font-family:Century Gothic; font-size:22px; color:black"><center><b>How does your skin look like?</b></center></text></br>
+									  <ul style="list-style: none;">
+									  <li><input type="radio" id="radio9" name="q3" value="a"/><label for="radio9"><center>Cool, fresh, and supple</center></label></li>
+									  <li><input type="radio" id="radio10" name="q3" value="b" /><label for="radio10"><center> Thin and lacking moisture</center></label></li>
+									  <li><input type="radio" id="radio11" name="q3" value="c"/><label for="radio11"><center>Shines on the "T" zone</center></label></li>
+									  <li><input type="radio" id="radio12" name="q3" value="d" /><label for="radio12"><center>Shines and has a tendency for ache</center></label></li>
+									  </ul>
+								  </br></br>
+								  <text style="font-family:Century Gothic; font-size:22px; color:black"><center><b>How does your skin feel when touched?</b></center></text></br>
+									  <ul style="list-style: none;">
+									  <li><input type="radio" id="radio13" name="q4" value="a"/><label for="radio13"><center>Supple</center></label></li>
+									  <li><input type="radio" id="radio14" name="q4" value="b" /><label for="radio14"><center>Dry or very dry</center></label></li>
+									  <li><input type="radio" id="radio15" name="q4" value="c"/><label for="radio15"><center>Oily on the forehead and nose</center></label></li>
+									  <li><input type="radio" id="radio16" name="q4" value="d" /><label for="radio16"><center>Oily all over</center></label></li>
+									  </ul>
+								</br></br>
+							  </ul>
+						  </div>
+						  <div style="width:100%; float:left;">
+							  <input type='button' onclick='displayPopUp()' value='know your skin'/>
+							  </br>
+							  <text style="font-family:Century Gothic; font-size:30px; color:black"> <center>Your skin type is : <b id='userInput'> </center>  </text> 
+							  </br></br>
+						  </div>
+					  </fieldset>
+					  </form>
+            </div>
+            <div data-role="tabbar" data-iconpos="top" data-theme="a">
+                <ul>
+                    <li>
+                        <a href="#page1" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Home</font>
+                        </a>
+                    </li>
+					<li>
+                        <a href="#prod" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Products</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page2" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Moods</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page3" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> Skin</font>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#page4" data-theme="" >
+                            <Font color="#FFFFFF" size="4px"> More</font>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </body>
+</html>
